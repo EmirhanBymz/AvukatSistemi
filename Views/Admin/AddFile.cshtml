@@ -1,0 +1,32 @@
+﻿@{
+    ViewData["Title"] = "Yeni Dosya Ekle";
+}
+
+<h2>Dosya Ekle</h2>
+
+<form asp-action="AddFile" method="post" enctype="multipart/form-data">
+    <input type="hidden" name="clientId" value="@ViewBag.ClientId" />
+
+    <div class="mb-3">
+        <label for="description" class="form-label">Dosya Açıklaması</label>
+        <input type="text" name="description" class="form-control" required />
+    </div>
+
+    <div class="mb-3">
+        <label for="status" class="form-label">Durum</label>
+        <select name="status" class="form-select" required>
+            <option value="DevamEdiyor">Devam Ediyor</option>
+            <option value="Beraat">Beraat</option>
+            <option value="Istinafta">İstinafta</option>
+            <option value="Yargitayda">Yargıtayda</option>
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label for="uploadedFile" class="form-label">Dosya Seç</label>
+        <input type="file" name="uploadedFile" class="form-control" required />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Ekle</button>
+    <a asp-action="ClientDetails" asp-route-id="@ViewBag.ClientId" class="btn btn-secondary">İptal</a>
+</form>

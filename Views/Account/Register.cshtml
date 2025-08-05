@@ -1,0 +1,58 @@
+﻿@model AvukatSistemi.ViewModels.RegisterViewModel
+
+@{
+    ViewData["Title"] = "Kayıt Ol";
+}
+
+<div class="d-flex align-items-center justify-content-center min-vh-100 bg-light">
+    <div class="card shadow-sm p-4" style="max-width: 400px; width: 100%;">
+        <h3 class="text-center mb-4">Avukat Sistemi Kayıt</h3>
+
+        <form asp-action="Register" method="post" novalidate>
+            <div class="mb-3">
+                <label asp-for="Username" class="form-label fw-semibold"></label>
+                <input asp-for="Username" class="form-control form-control-lg" placeholder="Kullanıcı adınız" />
+                <span asp-validation-for="Username" class="text-danger small"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Email" class="form-label fw-semibold"></label>
+                <input asp-for="Email" class="form-control form-control-lg" placeholder="E-posta adresiniz" />
+                <span asp-validation-for="Email" class="text-danger small"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Phone" class="form-label fw-semibold"></label>
+                <input asp-for="Phone" class="form-control form-control-lg" placeholder="Telefon numaranız" />
+                <span asp-validation-for="Phone" class="text-danger small"></span>
+            </div>
+
+            <!-- TC Kimlik No Alanı -->
+            <div class="mb-3">
+                <label asp-for="TCKimlikNo" class="form-label fw-semibold"></label>
+                <input asp-for="TCKimlikNo" class="form-control form-control-lg" placeholder="TC Kimlik Numaranız" />
+                <span asp-validation-for="TCKimlikNo" class="text-danger small"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Password" class="form-label fw-semibold"></label>
+                <input asp-for="Password" type="password" class="form-control form-control-lg" placeholder="Şifreniz" />
+                <span asp-validation-for="Password" class="text-danger small"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="ConfirmPassword" class="form-label fw-semibold"></label>
+                <input asp-for="ConfirmPassword" type="password" class="form-control form-control-lg" placeholder="Şifreyi tekrar girin" />
+                <span asp-validation-for="ConfirmPassword" class="text-danger small"></span>
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100 py-2 fw-semibold">Kayıt Ol</button>
+        </form>
+
+        <hr />
+
+        <p class="text-center mb-0">
+            Zaten hesabınız var mı? <a asp-controller="Account" asp-action="Login">Giriş Yap</a>
+        </p>
+    </div>
+</div>

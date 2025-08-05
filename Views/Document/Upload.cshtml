@@ -1,0 +1,21 @@
+﻿@{
+    ViewData["Title"] = "Dosya Yükle";
+}
+
+<h2>Dosya Yükle</h2>
+
+<form asp-action="Upload" enctype="multipart/form-data" method="post">
+    <div class="form-group">
+        <label>Dosya</label>
+        <input type="file" name="file" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>Açıklama</label>
+        <input type="text" name="description" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>Müvekkil ID</label>
+        <input type="number" name="clientId" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-primary">Yükle</button>
+</form>

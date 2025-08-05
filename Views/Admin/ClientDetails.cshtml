@@ -1,0 +1,57 @@
+﻿@model AvukatSistemi.Models.Client
+
+@{
+    ViewData["Title"] = "Müvekkil Detayları";
+    var statusList = Enum.GetValues(typeof(AvukatSistemi.Models.CaseStatus));
+}
+
+<h2>@Model.Name - Detaylar</h2>
+
+<p><strong>Email:</strong> @Model.Email</p>
+<p><strong>Telefon:</strong> @Model.Phone</p>
+
+<h3>Dosyalar</h3>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Dosya Açıklaması</th>
+            <th>Durum</th>
+            <th>Dosya</th>
+            <th>İşlemler</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var file in Model.CaseFiles)
+        {
+            <tr>
+                <td>@file.Description</td>
+                <td>
+                    <form asp-action="UpdateStatus" asp-controller="Admin" method="post" class="form-inline">
+                        <input type="hidden" name="id" value="@file.Id" />
+                        <select name="newStatus" class="form-control form-control-sm">
+                            @foreach (AvukatSistemi.Models.CaseStatus status in statusList)
+                            {
+                                <option value="@status" selected="@(file.Status == status ? "selected" : null)">
+                                    @status
+                                </option>
+                            }
+                        </select>
+                        <button type="submit" class="btn btn-sm btn-success ml-2">Kaydet</button>
+                    </form>
+                </td>
+                <td>
+                    <a href="@Url.Action("DownloadFile", "Admin", new { id = file.Id })">İndir</a>
+                </td>
+                <td>
+                    <form asp-action="DeleteFile" asp-controller="Admin" asp-route-id="@file.Id" method="post" onsubmit="return confirm('Dosya silinsin mi?');">
+                        <button type="submit" class="btn btn-danger btn-sm">Sil</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a asp-action="AddFile" asp-route-clientId="@Model.Id" class="btn btn-primary">Yeni Dosya Ekle</a>
+<a asp-action="ClientList" class="btn btn-secondary">Geri</a>

@@ -1,0 +1,39 @@
+﻿@model AvukatSistemi.ViewModels.LoginViewModel
+
+@{
+    ViewData["Title"] = "Giriş Yap";
+}
+
+<div class="d-flex align-items-center justify-content-center min-vh-100 bg-light">
+    <div class="card shadow-sm p-4" style="max-width: 400px; width: 100%;">
+        <h3 class="text-center mb-4">Avukat Sistemi Giriş</h3>
+
+        <form asp-action="Login" method="post" novalidate>
+            <div class="mb-3">
+                <label asp-for="Email" class="form-label fw-semibold"></label>
+                <input asp-for="Email" class="form-control form-control-lg" placeholder="E-posta adresiniz" />
+                <span asp-validation-for="Email" class="text-danger small"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Password" class="form-label fw-semibold"></label>
+                <input asp-for="Password" type="password" class="form-control form-control-lg" placeholder="Şifreniz" />
+                <span asp-validation-for="Password" class="text-danger small"></span>
+            </div>
+
+            <div class="form-check mb-3">
+                <input asp-for="RememberMe" class="form-check-input" id="rememberMe" />
+                <label asp-for="RememberMe" class="form-check-label" for="rememberMe">Beni Hatırla</label>
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100 py-2 fw-semibold">Giriş Yap</button>
+        </form>
+
+        <hr />
+
+        <p class="text-center mb-0">
+            Hesabınız yok mu? <a asp-controller="Account" asp-action="Register">Kayıt Ol</a>
+        </p>
+    </div>
+</div>
+

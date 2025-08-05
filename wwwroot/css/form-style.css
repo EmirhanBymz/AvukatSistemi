@@ -1,0 +1,55 @@
+﻿/* Genel form stilleri */
+.auth-container {
+    max-width: 450px;
+    margin: 60px auto;
+    background-color: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    padding: 40px;
+}
+
+    .auth-container h2 {
+        text-align: center;
+        margin-bottom: 25px;
+        font-weight: 600;
+        color: #343a40;
+    }
+
+    .auth-container .form-label {
+        font-weight: 500;
+        color: #333;
+    }
+
+    .auth-container .form-control {
+        border-radius: 8px;
+        padding: 10px;
+        border: 1px solid #ced4da;
+        transition: all 0.3s ease;
+    }
+
+        .auth-container .form-control:focus {
+            box-shadow: 0 0 5px rgba(13, 110, 253, 0.5);
+            border-color: #0d6efd;
+        }
+
+    .auth-container .btn-primary {
+        width: 100%;
+        border-radius: 8px;
+        padding: 10px;
+        font-weight: 600;
+        background-color: #0d6efd;
+        border: none;
+        transition: background-color 0.3s ease;
+    }
+
+        .auth-container .btn-primary:hover {
+            background-color: #0b5ed7;
+        }
+
+    .auth-container .form-check-label {
+        font-size: 0.95rem;
+    }
+
+.text-danger {
+    font-size: 0.9rem;
+}

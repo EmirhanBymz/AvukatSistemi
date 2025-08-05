@@ -1,0 +1,18 @@
+﻿@model AvukatSistemi.Models.Client
+
+@{
+    ViewData["Title"] = "Dashboard";
+}
+
+<h2>Hoşgeldiniz, @Model.Name</h2>
+
+<div>
+    <h4>Müvekkil Bilgileri</h4>
+    <ul>
+        <li><strong>Adı:</strong> @Model.Name</li>
+        <li><strong>Email:</strong> @Model.Email</li>
+        <li><strong>Telefon:</strong> @Model.Phone</li>
+        <li><strong>TCKimlik No:</strong> @Model.TCKimlikNo</li>
+    </ul>
+</div>
+

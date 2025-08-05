@@ -1,0 +1,36 @@
+﻿@model IEnumerable<AvukatSistemi.Models.Client>
+
+@{
+    ViewData["Title"] = "Tüm Müvekkiller";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<table class="table table-bordered table-hover">
+    <thead class="table-light">
+        <tr>
+            <th>İsim</th>
+            <th>Email</th>
+            <th>Telefon</th>
+            <th style="width:150px;">İşlemler</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var client in Model)
+        {
+            <tr>
+                <td>@client.Name</td>
+                <td>@client.Email</td>
+                <td>@client.Phone</td>
+                <td>
+                    <a class="btn btn-info btn-sm me-1" href="@Url.Action("ClientDetails", "Admin", new { id = client.Id })">Detay</a>
+                    <form asp-action="DeleteClient" method="post" asp-route-id="@client.Id" class="d-inline" onsubmit="return confirm('Müvekkili silmek istediğinize emin misiniz?');">
+                        <button type="submit" class="btn btn-danger btn-sm">Sil</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a asp-action="CreateClient" class="btn btn-primary">Yeni Müvekkil Ekle</a>

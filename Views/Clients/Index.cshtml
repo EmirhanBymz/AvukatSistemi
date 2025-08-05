@@ -1,0 +1,32 @@
+﻿@model IEnumerable<AvukatSistemi.Models.Client>
+
+@{
+    ViewData["Title"] = "Müvekkil Listesi";
+}
+
+<h2>Müvekkiller</h2>
+
+<p>
+    <a class="btn btn-primary" asp-action="Create">Yeni Müvekkil Ekle</a>
+</p>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Adı</th>
+            <th>Açıklama</th>
+            <th>Oluşturulma Tarihi</th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var client in Model)
+    {
+        <tr>
+            <td>@client.Name</td>
+            <td>@client.Description</td>
+            <td>@client.CreatedDate.ToString("dd.MM.yyyy")</td>
+        </tr>
+    }
+    </tbody>
+</table>
+

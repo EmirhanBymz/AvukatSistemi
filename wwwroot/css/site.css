@@ -1,0 +1,159 @@
+﻿/* site.css */
+
+/* Body ve genel font ayarları */
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f5f7fa;
+    color: #333;
+    padding-bottom: 3rem; /* footer için boşluk */
+}
+
+/* Navbar */
+.navbar-brand {
+    font-weight: 600;
+    font-size: 1.5rem;
+    letter-spacing: 1px;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+    color: #ddd;
+    transition: color 0.3s ease;
+}
+
+    .navbar-dark .navbar-nav .nav-link:hover,
+    .navbar-dark .navbar-nav .nav-link.active {
+        color: #ffc107; /* Bootstrap'ın warning rengi */
+    }
+
+/* Navbar toggler */
+.navbar-toggler {
+    border-color: #0d6efd;
+}
+
+.navbar-toggler-icon {
+    filter: invert(1); /* Ters renk, koyu arka planda görünür */
+}
+
+.bg-dark {
+    background-color: #212529 !important; /* Bootstrap dark'ın biraz koyusu */
+}
+
+footer {
+    font-size: 0.9rem;
+    letter-spacing: 0.02em;
+}
+
+    /* Footer linkler için */
+    footer a {
+        color: #ffc107;
+        transition: color 0.3s ease;
+    }
+
+        footer a:hover {
+            color: #fff3cd;
+        }
+
+/* Butonlar */
+.btn-outline-warning {
+    border-width: 2px;
+}
+
+    .btn-outline-warning:hover {
+        background-color: #ffc107;
+        color: #212529;
+        border-color: #ffc107;
+    }
+
+/* Button focus outline iyileştirme */
+.btn-primary:focus {
+    outline: 3px solid rgba(13, 110, 253, 0.5);
+    outline-offset: 2px;
+}
+
+/* Container margin-top */
+.container {
+    margin-top: 2rem;
+}
+
+/* Table hover */
+.table-hover tbody tr:hover {
+    background-color: #fff3cd;
+}
+
+/* Kart container'ı için */
+.card {
+    max-width: 400px;
+    width: 100%;
+    margin: auto; /* Ortala */
+    padding: 2rem 1.5rem;
+    background-color: #343a40; /* Koyu tema */
+    color: #f8f9fa;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+}
+
+/* Form alanları */
+.form-control {
+    background-color: #495057;
+    border: 1px solid #6c757d;
+    color: #f8f9fa;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+    .form-control::placeholder {
+        color: #ced4da;
+    }
+
+    .form-control:focus {
+        background-color: #495057;
+        color: #fff;
+        border-color: #0d6efd;
+        box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.5);
+        outline: none;
+    }
+
+/* Etiketler */
+.form-label {
+    color: #f8f9fa;
+    font-weight: 600;
+}
+
+/* Buton */
+.btn-primary {
+    background-color: #0d6efd;
+    border-color: #0d6efd;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+}
+
+    .btn-primary:hover {
+        background-color: #0b5ed7;
+        border-color: #0b5ed7;
+    }
+
+/* Linkler */
+a {
+    color: #0d6efd;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+    a:hover {
+        color: #0b5ed7;
+        text-decoration: underline;
+    }
+
+/* Responsive margin ayarı: küçük ekranlarda biraz daha sıkışık */
+@media (max-width: 575.98px) {
+    .card {
+        margin: 1rem;
+        padding: 1.5rem 1rem;
+    }
+}
+
+/* Büyük ekranlarda margin artır */
+@media (min-width: 768px) {
+    .card {
+        margin: 2rem auto;
+    }
+}

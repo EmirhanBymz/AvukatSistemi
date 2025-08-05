@@ -1,0 +1,68 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<AvukatSistemi.Models.ApplicationUser> SignInManager
+@inject UserManager<AvukatSistemi.Models.ApplicationUser> UserManager
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewData["Title"] - Avukat-Müvekkil Sistemi</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="/css/site.css" rel="stylesheet" />
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" asp-controller="Home" asp-action="Index">Avukat-Müvekkil Takip</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    @if (SignInManager.IsSignedIn(User))
+                    {
+                        if (User.IsInRole("Admin"))
+                        {
+                            <li class="nav-item"><a asp-controller="Admin" asp-action="ClientList" class="nav-link">Müvekkiller</a></li>
+                            <li class="nav-item"><a asp-controller="Admin" asp-action="CreateClient" class="nav-link">Müvekkil Oluştur</a></li>
+                        }
+                        else
+                        {
+                            <li class="nav-item"><a asp-controller="Clients" asp-action="Files" class="nav-link">Dosyalarım</a></li>
+                        }
+
+                        <li class="nav-item">
+                            <form asp-controller="Account" asp-action="Logout" method="post" class="d-inline">
+                                @Html.AntiForgeryToken()
+                                <button type="submit" class="btn btn-link nav-link">Çıkış Yap</button>
+                            </form>
+                        </li>
+                    }
+
+                    else
+                    {
+                        <li class="nav-item"><a asp-controller="Account" asp-action="Login" class="nav-link">Giriş Yap</a></li>
+                        <li class="nav-item"><a asp-controller="Account" asp-action="Register" class="nav-link">Kayıt Ol</a></li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-3 mt-md-4">
+        @RenderBody()
+    </div>
+
+    <footer class="bg-dark text-light py-4 text-center mt-5">
+        <div class="container px-3 px-md-5">
+            <p class="mb-0 small">© 2025 Avukat Sistemi. Tüm hakları saklıdır.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/site.js"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>
