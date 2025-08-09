@@ -2,31 +2,114 @@
     ViewData["Title"] = "Yeni Dosya Ekle";
 }
 
-<h2>Dosya Ekle</h2>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet" />
 
-<form asp-action="AddFile" method="post" enctype="multipart/form-data">
-    <input type="hidden" name="clientId" value="@ViewBag.ClientId" />
+<style>
+    body, html {
+        background-color: white !important; /* sayfa dışı beyaz */
+        height: 100%;
+    }
 
-    <div class="mb-3">
-        <label for="description" class="form-label">Dosya Açıklaması</label>
-        <input type="text" name="description" class="form-control" required />
-    </div>
+    .card {
+        background-color: #212529 !important; /* kart koyu gri */
+        border: none !important;
+        border-radius: 15px;
+        max-width: 480px;
+        margin: 3rem auto;
+        padding: 2rem;
+        color: white;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
 
-    <div class="mb-3">
-        <label for="status" class="form-label">Durum</label>
-        <select name="status" class="form-select" required>
-            <option value="DevamEdiyor">Devam Ediyor</option>
-            <option value="Beraat">Beraat</option>
-            <option value="Istinafta">İstinafta</option>
-            <option value="Yargitayda">Yargıtayda</option>
-        </select>
-    </div>
+    label.form-label {
+        color: white !important;
+        font-weight: 600;
+    }
 
-    <div class="mb-3">
-        <label for="uploadedFile" class="form-label">Dosya Seç</label>
-        <input type="file" name="uploadedFile" class="form-control" required />
-    </div>
+    .form-control, .form-select {
+        background-color: #000 !important;
+        color: white !important;
+        border: none !important;
+        border-radius: 6px;
+    }
 
-    <button type="submit" class="btn btn-primary">Ekle</button>
-    <a asp-action="ClientDetails" asp-route-id="@ViewBag.ClientId" class="btn btn-secondary">İptal</a>
-</form>
+        .form-control::placeholder {
+            color: #ced4da !important;
+            opacity: 1;
+        }
+
+        .form-control:focus, .form-select:focus {
+            background-color: #000 !important;
+            color: white !important;
+            box-shadow: 0 0 0 0.25rem rgba(255,255,255,0.25);
+            border-color: #6c757d !important;
+            outline: none;
+        }
+
+    .btn-primary {
+        background-color: #6c757d !important;
+        border: none !important;
+        color: white !important;
+        font-weight: 600;
+        transition: background-color 0.3s ease;
+    }
+
+        .btn-primary:hover {
+            background-color: #5a6268 !important;
+            color: white !important;
+        }
+
+    .btn-secondary {
+        background-color: #495057 !important;
+        border: none !important;
+        color: white !important;
+        font-weight: 600;
+        transition: background-color 0.3s ease;
+    }
+
+        .btn-secondary:hover {
+            background-color: #343a40 !important;
+            color: white !important;
+        }
+</style>
+
+<div class="card">
+    <h2 class="mb-4 text-center">
+        <i class="bi bi-file-earmark-plus-fill me-2"></i> Dosya Ekle
+    </h2>
+
+    <form asp-action="AddFile" method="post" enctype="multipart/form-data" novalidate>
+        <input type="hidden" name="clientId" value="@ViewBag.ClientId" />
+
+        <div class="mb-3">
+            <label for="description" class="form-label">Dosya Açıklaması</label>
+            <input type="text" name="description" class="form-control" placeholder="Dosya hakkında kısa açıklama" required />
+        </div>
+
+        <div class="mb-3">
+            <label for="status" class="form-label">Durum</label>
+            <select name="status" class="form-select" required>
+                <option value="" disabled selected>Durum seçiniz</option>
+                <option value="DevamEdiyor">Devam Ediyor</option>
+                <option value="Beraat">Beraat</option>
+                <option value="Istinafta">İstinafta</option>
+                <option value="Yargitayda">Yargıtayda</option>
+            </select>
+        </div>
+
+        <div class="mb-4">
+            <label for="uploadedFile" class="form-label">Dosya Seç</label>
+            <input type="file" name="uploadedFile" class="form-control" required />
+        </div>
+
+        <div class="d-flex justify-content-between">
+            <button type="submit" class="btn btn-primary">
+                <i class="bi bi-plus-circle me-1"></i> Ekle
+            </button>
+            <a asp-action="ClientDetails" asp-route-id="@ViewBag.ClientId" class="btn btn-secondary">
+                <i class="bi bi-x-circle me-1"></i> İptal
+            </a>
+        </div>
+    </form>
+</div>

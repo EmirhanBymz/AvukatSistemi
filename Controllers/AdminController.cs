@@ -28,11 +28,13 @@ namespace AvukatSistemi.Controllers
             _env = env ?? throw new ArgumentNullException(nameof(env));
             _userManager = userManager ?? throw new ArgumentNullException(nameof(userManager));
         }
+
         public async Task<IActionResult> Index()
         {
             var clients = await _context.Clients.ToListAsync();
             return View(clients);
         }
+
         // Müvekkil listesi
         public IActionResult ClientList()
         {
@@ -111,7 +113,6 @@ namespace AvukatSistemi.Controllers
             return RedirectToAction("ClientDetails", new { id = file.ClientId });
         }
 
-
         // Dosya ekle
         [HttpPost]
         public IActionResult AddFile(int clientId, string description, string status, IFormFile uploadedFile)
@@ -165,7 +166,6 @@ namespace AvukatSistemi.Controllers
             return View();
         }
 
-
         // Müvekkil oluştur
         [HttpPost]
         public async Task<IActionResult> CreateClient(CreateClientViewModel model)
@@ -179,7 +179,6 @@ namespace AvukatSistemi.Controllers
                 Email = model.Email,
                 Phone = model.Phone,
                 TCKimlikNo = model.TCKimlikNo
-
             };
 
             _context.Clients.Add(client);
@@ -216,9 +215,7 @@ namespace AvukatSistemi.Controllers
                 .FirstOrDefaultAsync(c => c.Id == id);
 
             if (client == null)
-            {
                 return NotFound();
-            }
 
             // Dosyaları fiziksel sil
             if (client.CaseFiles != null)
@@ -233,7 +230,12 @@ namespace AvukatSistemi.Controllers
                 }
             }
 
-            _context.CaseFiles.RemoveRange(client.CaseFiles);
+            // Null check yaparak sil
+            if (client.CaseFiles != null && client.CaseFiles.Any())
+            {
+                _context.CaseFiles.RemoveRange(client.CaseFiles);
+            }
+
             _context.Clients.Remove(client);
 
             await _context.SaveChangesAsync();
@@ -241,8 +243,17 @@ namespace AvukatSistemi.Controllers
             return RedirectToAction("ClientList");
         }
 
+        // Dashboard sayfası
         public IActionResult Dashboard()
         {
+            ViewBag.TotalClients = _context.Clients.Count();
+            ViewBag.TotalFiles = _context.CaseFiles.Count();
+
+            ViewBag.OngoingCases = _context.CaseFiles.Count(f => f.Status == CaseStatus.DevamEdiyor);
+            ViewBag.BeraatCases = _context.CaseFiles.Count(f => f.Status == CaseStatus.Beraat);
+            ViewBag.IstinaftaCases = _context.CaseFiles.Count(f => f.Status == CaseStatus.İstinafta);
+            ViewBag.YargitaydaCases = _context.CaseFiles.Count(f => f.Status == CaseStatus.Yargıtayda);
+
             return View();
         }
     }

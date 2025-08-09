@@ -4,36 +4,125 @@
     ViewData["Title"] = "Giriş Yap";
 }
 
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet" />
+<style>
+    /* İkon arka plan koyu gri */
+    .input-group-text {
+        background-color: #343a40 !important; /* koyu gri */
+        color: white !important;
+        border: none !important;
+    }
+    /* Input kutuları siyah ve beyaz yazı */
+    .form-control {
+        background-color: #000000 !important; /* siyah */
+        color: white !important;
+        border: none !important;
+    }
+        /* Placeholder renkleri açık gri */ 
+        .form-control::placeholder {
+            color: #ced4da !important;
+            opacity: 1;
+        }
+        /* Form kontrol focus */
+        .form-control:focus {
+            background-color: #000000 !important;
+            color: white !important;
+            box-shadow: 0 0 0 0.25rem rgba(255, 255, 255, 0.25);
+            border-color: #6c757d !important;
+        }
+    /* Card arka plan koyu gri */
+    .card {
+        background-color: #212529 !important; /* koyu koyu gri */
+        border: none !important;
+        border-radius: 15px;
+    }
+    /* Buton koyu tema */
+    .btn-primary {
+        background-color: #6c757d !important; /* gri ton */
+        border: none !important;
+        color: white !important;
+        font-weight: 600;
+        transition: background-color 0.3s ease;
+    }
+
+        .btn-primary:hover {
+            background-color: #5a6268 !important;
+            color: white !important;
+        }
+    /* Label yazıları beyaz */
+    label.form-label {
+        color: white !important;
+        font-weight: 600;
+    }
+    /* Form-check label beyaz */
+    .form-check-label {
+        color: white !important;
+    }
+    /* Link renk beyaz, hoverda açık gri */
+    a {
+        color: white !important;
+        text-decoration: none;
+        font-weight: 600;
+    }
+
+        a:hover {
+            color: #adb5bd !important;
+            text-decoration: underline;
+        }
+    /* Sayfa arka plan koyu */
+    body, html {
+        background-color: white !important; /* beyaz sayfa dışı */
+        height: 100%;
+    }
+</style>
+
 <div class="d-flex align-items-center justify-content-center min-vh-100 bg-light">
-    <div class="card shadow-sm p-4" style="max-width: 400px; width: 100%;">
-        <h3 class="text-center mb-4">Avukat Sistemi Giriş</h3>
+    <div class="card shadow-lg p-4" style="max-width: 420px; width: 100%; border-radius: 15px;">
+        <h3 class="text-center mb-4 fw-bold text-primary">
+            <i class="bi bi-shield-lock-fill me-2"></i> Avukat Sistemi Giriş
+        </h3>
 
         <form asp-action="Login" method="post" novalidate>
             <div class="mb-3">
                 <label asp-for="Email" class="form-label fw-semibold"></label>
-                <input asp-for="Email" class="form-control form-control-lg" placeholder="E-posta adresiniz" />
+                <div class="input-group">
+                    <span class="input-group-text bg-primary text-white">
+                        <i class="bi bi-envelope-fill"></i>
+                    </span>
+                    <input asp-for="Email" class="form-control form-control-lg" placeholder="E-posta adresiniz" />
+                </div>
                 <span asp-validation-for="Email" class="text-danger small"></span>
             </div>
 
             <div class="mb-3">
                 <label asp-for="Password" class="form-label fw-semibold"></label>
-                <input asp-for="Password" type="password" class="form-control form-control-lg" placeholder="Şifreniz" />
+                <div class="input-group">
+                    <span class="input-group-text bg-primary text-white">
+                        <i class="bi bi-key-fill"></i>
+                    </span>
+                    <input asp-for="Password" type="password" class="form-control form-control-lg" placeholder="Şifreniz" />
+                </div>
                 <span asp-validation-for="Password" class="text-danger small"></span>
             </div>
 
-            <div class="form-check mb-3">
+            <div class="form-check mb-4">
                 <input asp-for="RememberMe" class="form-check-input" id="rememberMe" />
                 <label asp-for="RememberMe" class="form-check-label" for="rememberMe">Beni Hatırla</label>
             </div>
 
-            <button type="submit" class="btn btn-primary w-100 py-2 fw-semibold">Giriş Yap</button>
+            <button type="submit" class="btn btn-primary w-100 py-2 fw-semibold shadow-sm">
+                Giriş Yap <i class="bi bi-box-arrow-in-right ms-1"></i>
+            </button>
         </form>
 
-        <hr />
+        <hr class="my-4" />
 
-        <p class="text-center mb-0">
-            Hesabınız yok mu? <a asp-controller="Account" asp-action="Register">Kayıt Ol</a>
+        <p class="text-center mb-0" style="color: white;">
+            Hesabınız yok mu?
+            <a asp-controller="Account" asp-action="Register" class="text-primary fw-semibold text-decoration-none">
+                Kayıt Ol
+            </a>
         </p>
     </div>
 </div>
-

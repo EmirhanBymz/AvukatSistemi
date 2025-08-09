@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("AvukatSistemi")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d14989ca9233876738d73ee3ccc6127611268cea")]
 [assembly: System.Reflection.AssemblyProductAttribute("AvukatSistemi")]
 [assembly: System.Reflection.AssemblyTitleAttribute("AvukatSistemi")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

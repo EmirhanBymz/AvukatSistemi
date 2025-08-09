@@ -138,3 +138,4 @@ C:\Users\Omer\Desktop\AvukatSistemi\AvukatSistemi\obj\Debug\net8.0\refint\Avukat
 C:\Users\Omer\Desktop\AvukatSistemi\AvukatSistemi\obj\Debug\net8.0\AvukatSistemi.pdb
 C:\Users\Omer\Desktop\AvukatSistemi\AvukatSistemi\obj\Debug\net8.0\AvukatSistemi.genruntimeconfig.cache
 C:\Users\Omer\Desktop\AvukatSistemi\AvukatSistemi\obj\Debug\net8.0\ref\AvukatSistemi.dll
+C:\Users\Omer\Desktop\AvukatSistemi\AvukatSistemi\obj\Debug\net8.0\AvukatSistemi.sourcelink.json

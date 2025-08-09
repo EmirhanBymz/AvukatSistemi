@@ -9,6 +9,8 @@ namespace AvukatSistemi.Models
         [Required]
         public string Name { get; set; } = null!;
 
+        
+
         [EmailAddress]
         public string Email { get; set; } = null!;
 

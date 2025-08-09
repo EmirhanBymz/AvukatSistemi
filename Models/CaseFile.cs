@@ -20,6 +20,6 @@ namespace AvukatSistemi.Models
 
         public int ClientId { get; set; } // <-- EF bu sütunu bekliyor
 
-        public Client Client { get; set; }
+        public Client? Client { get; set; }
     }
 }

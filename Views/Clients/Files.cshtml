@@ -1,40 +1,63 @@
-﻿@model List<AvukatSistemi.Models.CaseFile> 
+﻿@model List<AvukatSistemi.Models.CaseFile>
 @{
     ViewData["Title"] = "Dosyalarım";
 }
 
-<h2>Dosyalarım</h2>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet" />
 
-@if (Model == null || !Model.Any())
-{
-    <div class="alert alert-info">Henüz dosya bulunmamaktadır.</div>
+<div class="container mt-5">
+    <h2 class="mb-4 text-center">📁 Dosyalarım</h2>
+
+    @if (Model == null || !Model.Any())
+    {
+        <div class="alert alert-info text-center shadow-sm p-3 rounded">
+            Henüz dosya bulunmamaktadır.
+        </div>
+    }
+    else
+    {
+        <div class="table-responsive">
+            <table class="table table-hover table-bordered shadow-sm">
+                <thead class="table-primary">
+                    <tr class="text-center">
+                        <th scope="col"><i class="bi bi-card-text"></i> Açıklama</th>
+                        <th scope="col"><i class="bi bi-info-circle"></i> Durum</th>
+                        <th scope="col"><i class="bi bi-file-earmark-arrow-down"></i> Dosya</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var file in Model)
+                    {
+                        <tr>
+                            <td>@file.Description</td>
+                            <td>
+                                <span class="badge @GetStatusClass(file.Status.ToString())">
+                                    @file.Status.ToString()
+                                </span>
+                            </td>
+                            <td class="text-center">
+                                <a class="btn btn-outline-primary btn-sm" href="@Url.Action("DownloadFile", "Clients", new { id = file.Id })">
+                                    <i class="bi bi-download"></i> İndir
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+</div>
+
+@functions {
+    public string GetStatusClass(string status)
+    {
+        return status switch
+        {
+            "Devam Ediyor" => "bg-warning text-dark",
+            "Kapandı" => "bg-success",
+            "İtiraz" => "bg-danger",
+            _ => "bg-secondary"
+        };
+    }
 }
-else
-{
-    <table class="table table-bordered">
-        <thead>
-            <tr>
-                <th>Dosya Açıklaması</th>
-                <th>Durum</th>
-                <th>Dosya</th>
-                <th>İşlemler</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var file in Model)
-            {
-                <tr>
-                    <td>@file.Description</td>
-                    <td>
-                        @file.Status.ToString()
-                        <br />
-                    </td>
-                    <td>
-                        <a href="@Url.Action("DownloadFile", "Clients", new { id = file.Id })">İndir</a>
-                    </td>
-
-                </tr>
-            }
-        </tbody>
-    </table>
- }

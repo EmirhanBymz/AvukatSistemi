@@ -5,53 +5,81 @@
     var statusList = Enum.GetValues(typeof(AvukatSistemi.Models.CaseStatus));
 }
 
-<h2>@Model.Name - Detaylar</h2>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet" />
 
-<p><strong>Email:</strong> @Model.Email</p>
-<p><strong>Telefon:</strong> @Model.Phone</p>
+<div class="container mt-4">
+    <h2 class="mb-4">@Model.Name - Detaylar</h2>
 
-<h3>Dosyalar</h3>
+    <div class="mb-4">
+        <p><strong><i class="bi bi-envelope-fill me-1"></i>Email:</strong> @Model.Email</p>
+        <p><strong><i class="bi bi-telephone-fill me-1"></i>Telefon:</strong> @Model.Phone</p>
+    </div>
 
-<table class="table table-bordered">
-    <thead>
-        <tr>
-            <th>Dosya Açıklaması</th>
-            <th>Durum</th>
-            <th>Dosya</th>
-            <th>İşlemler</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var file in Model.CaseFiles)
-        {
-            <tr>
-                <td>@file.Description</td>
-                <td>
-                    <form asp-action="UpdateStatus" asp-controller="Admin" method="post" class="form-inline">
-                        <input type="hidden" name="id" value="@file.Id" />
-                        <select name="newStatus" class="form-control form-control-sm">
-                            @foreach (AvukatSistemi.Models.CaseStatus status in statusList)
-                            {
-                                <option value="@status" selected="@(file.Status == status ? "selected" : null)">
-                                    @status
-                                </option>
-                            }
-                        </select>
-                        <button type="submit" class="btn btn-sm btn-success ml-2">Kaydet</button>
-                    </form>
-                </td>
-                <td>
-                    <a href="@Url.Action("DownloadFile", "Admin", new { id = file.Id })">İndir</a>
-                </td>
-                <td>
-                    <form asp-action="DeleteFile" asp-controller="Admin" asp-route-id="@file.Id" method="post" onsubmit="return confirm('Dosya silinsin mi?');">
-                        <button type="submit" class="btn btn-danger btn-sm">Sil</button>
-                    </form>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
+    <h3 class="mb-3">Dosyalar</h3>
 
-<a asp-action="AddFile" asp-route-clientId="@Model.Id" class="btn btn-primary">Yeni Dosya Ekle</a>
-<a asp-action="ClientList" class="btn btn-secondary">Geri</a>
+    @if (Model.CaseFiles == null || !Model.CaseFiles.Any())
+    {
+        <div class="alert alert-info">Henüz dosya bulunmamaktadır.</div>
+    }
+    else
+    {
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover align-middle shadow-sm">
+                <thead class="table-primary text-center">
+                    <tr>
+                        <th>Açıklama</th>
+                        <th style="min-width: 180px;">Durum Güncelle</th>
+                        <th>Dosya</th>
+                        <th>İşlemler</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var file in Model.CaseFiles)
+                    {
+                        <tr>
+                            <td>@file.Description</td>
+                            <td>
+                                <form asp-action="UpdateStatus" asp-controller="Admin" method="post" class="d-flex justify-content-center align-items-center gap-2 mb-0">
+                                    <input type="hidden" name="id" value="@file.Id" />
+                                    <select name="newStatus" class="form-select form-select-sm" style="min-width: 120px;">
+                                        @foreach (AvukatSistemi.Models.CaseStatus status in statusList)
+                                        {
+                                            <option value="@status" selected="@(file.Status == status ? "selected" : null)">
+                                                @status
+                                            </option>
+                                        }
+                                    </select>
+                                    <button type="submit" class="btn btn-success btn-sm" title="Durumu Kaydet">
+                                        <i class="bi bi-check-lg"></i>
+                                    </button>
+                                </form>
+                            </td>
+                            <td class="text-center">
+                                <a class="btn btn-outline-primary btn-sm" href="@Url.Action("DownloadFile", "Admin", new { id = file.Id })" title="Dosyayı İndir">
+                                    <i class="bi bi-download"></i>
+                                </a>
+                            </td>
+                            <td class="text-center">
+                                <form asp-action="DeleteFile" asp-controller="Admin" asp-route-id="@file.Id" method="post" onsubmit="return confirm('Dosya silinsin mi?');" class="d-inline">
+                                    <button type="submit" class="btn btn-outline-danger btn-sm" title="Dosyayı Sil">
+                                        <i class="bi bi-trash"></i>
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+
+    <div class="mt-4 d-flex gap-2">
+        <a asp-action="AddFile" asp-route-clientId="@Model.Id" class="btn btn-primary">
+            <i class="bi bi-plus-circle me-1"></i> Yeni Dosya Ekle
+        </a>
+        <a asp-action="ClientList" class="btn btn-secondary">
+            <i class="bi bi-arrow-left me-1"></i> Geri
+        </a>
+    </div>
+</div>

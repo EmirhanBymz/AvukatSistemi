@@ -1,38 +1,47 @@
 ﻿@model AvukatSistemi.ViewModels.CreateClientViewModel
 
-<h2>Yeni Müvekkil Ekle</h2>
+<div class="container mt-5" style="max-width: 600px;">
+    <h2 class="mb-4">Yeni Müvekkil Ekle</h2>
 
-<form asp-action="Create" method="post">
-    <div class="form-group">
-        <label asp-for="Name"></label>
-        <input asp-for="Name" class="form-control" />
-        <span asp-validation-for="Name" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="Email"></label>
-        <input asp-for="Email" class="form-control" />
-        <span asp-validation-for="Email" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="TCKimlikNo"></label>
-        <input asp-for="TCKimlikNo" class="form-control" />
-        <span asp-validation-for="TCKimlikNo" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="Phone"></label>
-        <input asp-for="Phone" class="form-control" />
-        <span asp-validation-for="Phone" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="Password"></label>
-        <input asp-for="Password" type="password" class="form-control" />
-        <span asp-validation-for="Password" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="Description"></label>
-        <textarea asp-for="Description" class="form-control"></textarea>
-        <span asp-validation-for="Description" class="text-danger"></span>
-    </div>
-    <button type="submit" class="btn btn-primary">Kaydet</button>
-</form>
+    <form asp-action="Create" method="post" novalidate>
+        <div class="mb-3">
+            <label asp-for="Name" class="form-label fw-semibold"></label>
+            <input asp-for="Name" class="form-control rounded-3" placeholder="Ad Soyad Giriniz" />
+            <span asp-validation-for="Name" class="text-danger small"></span>
+        </div>
 
+        <div class="mb-3">
+            <label asp-for="Email" class="form-label fw-semibold"></label>
+            <input asp-for="Email" type="email" class="form-control rounded-3" placeholder="E-posta Adresi" />
+            <span asp-validation-for="Email" class="text-danger small"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="TCKimlikNo" class="form-label fw-semibold"></label>
+            <input asp-for="TCKimlikNo" class="form-control rounded-3" placeholder="TC Kimlik Numarası" />
+            <span asp-validation-for="TCKimlikNo" class="text-danger small"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Phone" class="form-label fw-semibold"></label>
+            <input asp-for="Phone" class="form-control rounded-3" placeholder="Telefon Numarası" />
+            <span asp-validation-for="Phone" class="text-danger small"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Password" class="form-label fw-semibold"></label>
+            <input asp-for="Password" type="password" class="form-control rounded-3" placeholder="Şifre" />
+            <span asp-validation-for="Password" class="text-danger small"></span>
+        </div>
+
+        <div class="mb-4">
+            <label asp-for="Description" class="form-label fw-semibold"></label>
+            <textarea asp-for="Description" class="form-control rounded-3" rows="3" placeholder="Açıklama (opsiyonel)"></textarea>
+            <span asp-validation-for="Description" class="text-danger small"></span>
+        </div>
+
+        <button type="submit" class="btn btn-primary rounded-pill px-4 py-2 fw-semibold w-100">
+            Kaydet
+        </button>
+    </form>
+</div>
